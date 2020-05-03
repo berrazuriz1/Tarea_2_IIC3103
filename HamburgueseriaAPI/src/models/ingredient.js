@@ -1,7 +1,33 @@
 module.exports = (sequelize, DataTypes) => {
   const Ingredient = sequelize.define('Ingredient', {
-    nombre: DataTypes.STRING,
-    descripcion: DataTypes.STRING,
+    nombre:{
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          args: true,
+          msg: "El campo nombre no fue incorporado a la request",
+        },
+        notEmpty: {
+          args: true,
+          msg: "El nombre de la hamburguesa no puede estar vacio",
+        },
+      },
+    },
+    descripcion: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          args: true,
+          msg: "El campo descripcion no fue incorporado a la request",
+        },
+        notEmpty: {
+          args: true,
+          msg: "La descripcion de la hamburguesa no puede estar vacio",
+        },
+      },
+    },
   }, {});
 
   Ingredient.associate = function associate(models) {
